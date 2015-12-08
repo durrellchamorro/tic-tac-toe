@@ -1,0 +1,20 @@
+AllCops:
+  Exclude:
+    - spec/**/*
+StringLiterals:
+  Enabled: false
+
+WordArray:
+  Enabled: false
+
+LineLength:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+TrailingBlankLines:
+  Enabled: false
+
+SpaceAfterComma:
+  Enabled: false
