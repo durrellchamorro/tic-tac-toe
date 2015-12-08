@@ -1,4 +1,5 @@
 require 'Matrix'
+require 'pry'
 
 class Board
   attr_accessor :positions
@@ -33,6 +34,10 @@ class Board
 
   private
 
+  def create_empty_board
+    @positions = Matrix[[1,2,3], [4,5,6], [7,8,9]]
+  end
+
   def diagonal_win?(marker)
     reverse_diagonal = [positions[2,0], positions[1,1], positions[0,2]]
     forward_diagonal = [positions[0,0], positions[1,1], positions[2,2]]
@@ -56,9 +61,5 @@ class Board
 
   def to_s
     positions.to_a.map { |row| row.join(" ") }.join("\n")
-  end
-
-  def create_empty_board
-    @positions = Matrix[[1,2,3], [4,5,6], [7,8,9]]
   end
 end

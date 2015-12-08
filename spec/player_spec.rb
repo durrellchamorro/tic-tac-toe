@@ -3,9 +3,11 @@ require './player'
 require './spec/custom/should_have_attr_accessor'
 
 describe Player do
-  it { should have_attr_accessor(:marker) }
-  it { should have_attr_accessor(:wins) }
-  it { should have_attr_accessor(:current_positions) }
+  subject(:player) { Player.new }
+
+  it { expect(player).to have_attr_accessor(:marker) }
+  it { expect(player).to have_attr_accessor(:wins) }
+  it { expect(player).to have_attr_accessor(:current_positions) }
 
   describe 'initialize' do
     it 'should set @current positions to an empty array' do

@@ -1,6 +1,7 @@
 require './board'
 require './computer'
 require './human'
+require 'pry'
 
 class TicTacToe
   attr_accessor :human, :computer, :board
@@ -26,8 +27,12 @@ class TicTacToe
     puts "Would you like to go first or second? Enter 1 or 2"
   end
 
+  def obtain_turn_order_from_human
+    gets.strip
+  end
+
   def set_markers
-    humans_choice = gets.strip
+    humans_choice = obtain_turn_order_from_human
     play until ['1', '2'].include? humans_choice
     if humans_choice == '1'
       human.marker = 'x'
@@ -46,6 +51,16 @@ class TicTacToe
       take_turns_in_order(computer, human)
     end
     run_post_game_tasks
+  end
+
+  def take_turns_in_order(player1, player2)
+    [player1, player2].cycle do |player|
+      puts board
+      mark_board(player)
+      system 'clear'
+      announce_outcome(player.marker)
+      break if game_over?
+    end
   end
 
   def run_post_game_tasks
@@ -102,16 +117,6 @@ class TicTacToe
     human.wins = 0 && computer.wins = 0
   end
 
-  def take_turns_in_order(player1, player2)
-    [player1, player2].cycle do |player|
-      puts board
-      mark_board(player)
-      system 'clear'
-      announce_outcome(player.marker)
-      break if game_over?
-    end
-  end
-
   def mark_board(player)
     if player.class == Computer
       player.mark(board, human)
@@ -141,9 +146,13 @@ class TicTacToe
     board.game_over?
   end
 
+  def obtain_humans_choice_about_playing_again
+    gets.strip.downcase
+  end
+
   def ask_human_to_play_again
     puts "Press enter to play again or enter 'q' to quit."
-    if gets.strip.downcase == 'q'
+    if obtain_humans_choice_about_playing_again == 'q'
       system 'clear'
       puts "Good bye"
       exit
@@ -153,4 +162,4 @@ class TicTacToe
   end
 end
 
-TicTacToe.new.play
+# TicTacToe.new.play

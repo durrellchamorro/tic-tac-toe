@@ -1,4 +1,5 @@
 require './player'
+require 'pry'
 
 class Computer < Player
   def mark(board, human)
