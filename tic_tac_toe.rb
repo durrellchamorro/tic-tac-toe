@@ -146,6 +146,7 @@ class TicTacToe
     if gets.strip.downcase == 'q'
       system 'clear'
       puts "Good bye"
+      exit
     else
       play
     end
