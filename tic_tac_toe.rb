@@ -7,8 +7,8 @@ class TicTacToe
 
   def initialize
     @human = Human.new
-    @computer = Computer.new
     @board = Board.new
+    @computer = Computer.new(@board)
   end
 
   def play
@@ -118,7 +118,7 @@ class TicTacToe
 
   def mark_board(player)
     if player.class == Computer
-      player.mark(board, human)
+      player.mark(human)
     else
       player.mark(board)
     end
