@@ -1,5 +1,4 @@
 require 'Matrix'
-require 'pry'
 
 class Board
   attr_accessor :positions

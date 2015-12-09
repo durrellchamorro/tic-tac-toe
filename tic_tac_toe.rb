@@ -1,7 +1,6 @@
 require './board'
 require './computer'
 require './human'
-require 'pry'
 
 class TicTacToe
   attr_accessor :human, :computer, :board
@@ -162,4 +161,4 @@ class TicTacToe
   end
 end
 
-# TicTacToe.new.play
+TicTacToe.new.play

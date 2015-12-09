@@ -1,5 +1,4 @@
 require './player'
-require 'pry'
 
 class Computer < Player
   def mark(board, human)
@@ -13,7 +12,7 @@ class Computer < Player
 
   def pick_position(board, human, available_positions)
     sleep 1
-    pick_to_win(board).sample || pick_to_defend(board, human).sample ||
+    pick_to_win(board) || pick_to_defend(board, human) ||
       pick_position_five(board) || available_positions.sample
   end
 
@@ -22,14 +21,14 @@ class Computer < Player
   end
 
   def pick_to_win(board)
-    choose_prefered_position(board, self)
+    compute_preferred_positions(board, self).sample
   end
 
   def pick_to_defend(board, human)
-    choose_prefered_position(board, human)
+    compute_preferred_positions(board, human).sample
   end
 
-  def choose_prefered_position(board, player)
+  def compute_preferred_positions(board, player)
     winning_positions = WINNING_POSITIONS.map do |winning_position, pairs_of_neighbor_positions|
       winning_position if current_positions_equal_any?(pairs_of_neighbor_positions, player)
     end.compact
