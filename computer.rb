@@ -5,8 +5,7 @@ class Computer < Player
 
   def initialize(board)
     @board = board
-    @current_positions = []
-    @wins = 0
+    super()
   end
 
   def mark(human)
